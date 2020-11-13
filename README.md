@@ -1,5 +1,7 @@
 # projetkss
 
+Samuel Connecté
+
 Les différentes étapes du projet : 
 
 1- Créer le GitHub pour pouvoir travailler ensemble et s'envoyer les fichiers
