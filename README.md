@@ -1,5 +1,6 @@
 # projetkss
 
+TRELLO ORGANISATION TÂCHES : https://trello.com/invite/b/EdY6BORh/f3cf87ef60ad046c218ba73c51f67828/projetkss
 Samuel Connecté
 
 Les différentes étapes du projet : 
