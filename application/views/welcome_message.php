@@ -1,17 +1,16 @@
 <?php
-
 	require_once './vendor/autoload.php';
 
 	use Spipu\Html2Pdf\Html2Pdf;
 
-$date = '24/12/2020';
-$title = 'Facture Renault';
-$reference = 'Z678ABB';
-$company = 'Renault';
-$sentemail = 'email@renaultexemple.com';
-$sentfirstname = 'Marc';
-$sentlastname = 'Dupont';
-$sentadress = '97 Rue de Paris';
+$date = $invoices[0]['invoice_date'];
+$title = $invoices[0]['title'];
+$reference = $invoices[0]['reference'];
+$company = $invoices[0]['company'];
+$sentemail = $invoices[0]['sent_email'];
+$sentfirstname = $invoices[0]['sent_firstname'];
+$sentlastname = $invoices[0]['sent_lastname'];
+$sentadress = $invoices[0]['sent_address'];
 
 $content = '
 	<h1 style="text-align:center;">Facture</h1> 
@@ -30,11 +29,13 @@ $content = '
 
 $html2pdf = new Html2Pdf();
 $html2pdf->writeHTML($content);
-$html2pdf->output('myPdf.pdf'); // Generate and load the PDF in the browser.
+$html2pdf->output('facture'.$reference.'.pdf'); // Generate and load the PDF in the browser.
+
 
 // $html2pdf->output('myPdf.pdf, 'D'); // Generate the PDF execution and force download immediately.
+
 ?>
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	
