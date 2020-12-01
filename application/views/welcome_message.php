@@ -1,8 +1,43 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+
+	require_once './vendor/autoload.php';
+
+	use Spipu\Html2Pdf\Html2Pdf;
+
+$date = '24/12/2020';
+$title = 'Facture Renault';
+$reference = 'Z678ABB';
+$company = 'Renault';
+$sentemail = 'email@renaultexemple.com';
+$sentfirstname = 'Marc';
+$sentlastname = 'Dupont';
+$sentadress = '97 Rue de Paris';
+
+$content = '
+	<h1 style="text-align:center;">Facture</h1> 
+	<br/> 
+	<h2>Détails:</h2>
+	<br/>
+	<p>Date : '.$date.'</p>
+	<p>Title : '.$title.'</p>
+	<p>Reference : '.$reference.'</p>
+	<p>Company : '.$company.'</p>
+	<p>Sent Email : '.$sentemail.'</p>
+	<p>Sent First Name : '.$sentfirstname.'</p>
+	<p>Sent Last Name : '.$sentlastname.'</p>
+	<p>Sent Adress : '.$sentadress.'</p>
+	';
+
+$html2pdf = new Html2Pdf();
+$html2pdf->writeHTML($content);
+$html2pdf->output('myPdf.pdf'); // Generate and load the PDF in the browser.
+
+// $html2pdf->output('myPdf.pdf, 'D'); // Generate the PDF execution and force download immediately.
+?>
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
+	
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
@@ -66,6 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
+	<!--
 
 <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
@@ -84,6 +120,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
+
+<p>test</p>
+
+-->
+
 
 </body>
 </html>
