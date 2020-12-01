@@ -22,10 +22,12 @@ class Invoice extends CI_Controller {
 
 	public function index()
 	{
+		$ci = & get_instance();
+		$ci->load->model('InvoiceModel');
+		$data['invoices'] = $ci->InvoiceModel->getAllInvoices($_SESSION['id_customer']);
 		if($value = $this->input->get('export_pdf'))
 		$this->pdfGenerator($value);
-		
-		$this->load->view('invoice');
+		$this->load->view('invoice', $data);
 	}
 	
 	public static function pdfGenerator($id_invoice)
