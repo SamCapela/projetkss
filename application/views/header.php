@@ -1,6 +1,8 @@
 <?php
 $this->load->helper('url');
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -77,7 +79,7 @@ $this->load->helper('url');
 			<li class="nav-item active">
 				<a class="nav-link"  >
 					<i class="fas fa-fw fa-tachometer-alt"></i>
-					<span>Salut, veuillez vous connecter</span></a>
+					<span>Veuillez vous connecter</span></a>
 			</li>
 		<?php
 		}
@@ -125,7 +127,7 @@ $this->load->helper('url');
 				Déconnexion
 			</div>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo base_url(); ?>Auth">
+					<a class="nav-link" href="<?php echo base_url(); ?>Auth?destroy_connexion=1">
 						<i class="fas fa-sign-out-alt"></i>
 						<span>Déconnexion</span>
 					</a>
