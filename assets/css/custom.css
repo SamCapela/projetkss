@@ -348,6 +348,33 @@ progress {
   -webkit-appearance: button;
 }
 
+.container-fluid {
+	padding-top: 1.5rem;
+}
+
+.add_row
+{
+	padding: 1em;
+	float: right;
+}
+.add_row a
+{
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.form-group.row.detail-invoice {
+	width: 100%;
+}	
+
+.bg-dark #navbarNav {
+	display: none !important;
+}
+
+.detail-invoice
+{
+	padding: 1em;
+}
 output {
   display: inline-block;
 }

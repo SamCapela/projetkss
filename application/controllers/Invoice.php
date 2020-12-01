@@ -25,8 +25,13 @@ class Invoice extends CI_Controller {
 		$ci = & get_instance();
 		$ci->load->model('InvoiceModel');
 		$data['invoices'] = $ci->InvoiceModel->getAllInvoices($_SESSION['id_customer']);
-		if($value = $this->input->get('export_pdf'))
+		
+		
+		if($value = $this->input->get('add_invoice'))
+		$this->addInvoice();
+		elseif($value = $this->input->get('export_pdf'))
 		$this->pdfGenerator($value);
+		else
 		$this->load->view('invoice', $data);
 	}
 	
@@ -38,6 +43,14 @@ class Invoice extends CI_Controller {
 		$ci->load->view('pdf/pdf_generator', $data);
 	}
 	
+	
+	public static function addInvoice()
+	{
+		$ci = & get_instance();
+		$ci->load->model('InvoiceModel');
+		$data['invoices'] = $ci->InvoiceModel->addInvoice();
+		$ci->load->view('invoice/add_invoice', $data);
+	}
 
 	
 }

@@ -1,3 +1,12 @@
+$('#add_row').on('click', function()
+{
+	  
+	  html = '<div id="detail_form" class="form-group row detail-invoice clear clearfix"><div class="col-sm-2 mb-3 mb-sm-0"><input type="number" name="invoice_add_detail["quantity"]" class="form-control form-control-user" placeholder="Quantité"></div><div class="col-sm-4 mb-3 mb-sm-0"><input type="text" name="invoice_add_detail["title"]" class="form-control form-control-user" placeholder="Titre de la ligne"></div><div class="col-sm-4"><input type="email" name="invoice_add_detail["description"]" class="form-control form-control-user" placeholder="Description de la ligne"></div><div class="col-sm-2"><input type="number" name="invoice_add_detail["price"]" class="form-control form-control-user" placeholder="Prix"></div></div>';
+	  
+	  $('#detail_form').append(html).addClass('new_detail_add')
+	
+})
+
 (function($) {
 	  "use strict"; // Start of use strict
 	

@@ -41,4 +41,9 @@ class InvoiceModel extends CI_Model
 		return $query->result_array();
 	}
 	
+	public static function addInvoice()
+	{
+		return true;
+	}
+	
 }
