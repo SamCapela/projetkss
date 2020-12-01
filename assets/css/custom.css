@@ -113,6 +113,11 @@ dl {
   margin-bottom: 1rem;
 }
 
+.btn, .btn-primary, .btn-success
+{
+	padding: 10px;
+	text-decoration: none !important;
+}
 ol ol,
 ul ul,
 ol ul,

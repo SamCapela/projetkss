@@ -1,28 +1,22 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="utf-8">
-<title>Factures</title>
-</head>
-<body>
-
-	<h1> Liste des Factures </h1>
-	<?php 
-		echo('
-			<table class="table">
-			<thead>
-				<tr>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$this->load->view('header');
+?>
+	
+<div class="container-fluid">
+	<table class="table">
+		<thead>
+			<tr>
 				<th scope="col">Référence</th>
 				<th scope="col">Intitulé</th>
 				<th scope="col">Date</th>
-				</tr>
-			</thead>	
-			<tbody>
+				<th scope="col">Modifier</th>
+				<th scope="col">Exporter PDF</th>
+			</tr>
+		</thead>	
+		<tbody>
 				
-		');
-		$i = 1;
+<?php
 		foreach($invoices as $invoice)
 		{
 			
@@ -32,8 +26,8 @@
 					<td>'.$invoice['reference'].'</td>
 					<td>'.$invoice['title'].'</td>
 					<td>'.$invoice['invoice_date'].'</td>
-					<td><a href="#">Edit</a></td>
-					<td><a href="#">PDF</a></td>
+					<td><a class="btn-success" href="#">Edit</a></td>
+					<td><a class="btn-primary" href="#">PDF</a></td>
 				</tr>');			
 		}
 		echo('
@@ -41,26 +35,10 @@
 			</table>
 		');
 	?>
-<!--
-
-<div id="container">
-<h1>Welcome to CodeIgniter!</h1>
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-	
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-	
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-	
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-	
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-	</div>
-	
-	<p>test</p>
-</body>
--->
-</html>
+		</tbody>
+	</table>
+</div>	
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$this->load->view('footer');
+?>
