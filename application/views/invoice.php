@@ -10,7 +10,6 @@ $this->load->view('header');
 				<th scope="col">Référence</th>
 				<th scope="col">Intitulé</th>
 				<th scope="col">Date</th>
-				<th scope="col">Modifier</th>
 				<th scope="col">Exporter PDF</th>
 			</tr>
 		</thead>	
@@ -26,8 +25,7 @@ $this->load->view('header');
 					<td>'.$invoice['reference'].'</td>
 					<td>'.$invoice['title'].'</td>
 					<td>'.$invoice['invoice_date'].'</td>
-					<td><a class="btn-success" href="#">Edit</a></td>
-					<td><a class="btn-primary" href="#">PDF</a></td>
+					<td><a class="btn-primary" href="?export_pdf='.$invoice['id_invoice'].'">PDF</a></td>
 				</tr>');			
 		}
 		echo('
