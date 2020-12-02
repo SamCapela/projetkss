@@ -41,9 +41,32 @@ class InvoiceModel extends CI_Model
 		return $query->result_array();
 	}
 	
-	public static function addInvoice()
+	public static function addInvoice($value_invoice)
 	{
-		return true;
+		$ci =& get_instance();
+		$rand_reference = rand(100, 999);
+		$reference = '#F'.$_SESSION['id_customer'].$rand_reference;
+		$data_invoice = array(
+			'id_customer' => $_SESSION['id_customer'],
+			'invoice_date' => $value_invoice['invoice_date'],
+			'title' => $value_invoice['title'],
+			'reference' => $reference,
+			'company' => $value_invoice['company'],
+			'sent_email' => $value_invoice['sent_email'],
+			'sent_firstname' => $value_invoice['sent_firstname'],
+			'sent_lastname' => $value_invoice['sent_lastname'],
+			'sent_address' => $value_invoice['sent_address']	
+		);
+		
+		$ci->db->insert('invoice', $data_invoice);
+		$id_invoice = $ci->db->insert_id();
+		return $id_invoice;
+	}
+	
+	public static function addInvoiceDetail($value_invoice_detail)
+	{
+		$ci =& get_instance();
+		$ci->db->insert('invoice_detail', $value_invoice_detail);
 	}
 	
 }

@@ -1,11 +1,19 @@
 $('#add_row').on('click', function()
 {
-	  
-	  html = '<div id="detail_form" class="form-group row detail-invoice clear clearfix"><div class="col-sm-2 mb-3 mb-sm-0"><input type="number" name="invoice_add_detail["quantity"]" class="form-control form-control-user" placeholder="Quantité"></div><div class="col-sm-4 mb-3 mb-sm-0"><input type="text" name="invoice_add_detail["title"]" class="form-control form-control-user" placeholder="Titre de la ligne"></div><div class="col-sm-4"><input type="email" name="invoice_add_detail["description"]" class="form-control form-control-user" placeholder="Description de la ligne"></div><div class="col-sm-2"><input type="number" name="invoice_add_detail["price"]" class="form-control form-control-user" placeholder="Prix"></div></div>';
+	data_position = $('.data_position:last').attr('data-position');
+	data_position = parseInt(data_position) + 1;
+	
+	html = '<div class="form-group row detail-invoice clear clearfix"><div class="col-sm-12 btn-delete"><a id="delete_this" class="btn-alert">Supprimer<input class="delete_me" type="hidden" value="" name="detail['+data_position+'][stop]"></a></div><div class="col-sm-6 mb-3 mb-sm-0"><input type="number" name="detail['+data_position+'][quantity]" class="form-control form-control-user" placeholder="Quantité"></div><div class="col-sm-6"><input type="number" name="detail['+data_position+'][price]" class="form-control form-control-user" placeholder="Prix"></div><hr><div class="margin-spacing"></div><div class="col-sm-6 mb-3 mb-sm-0"><input data-position="'+data_position+'" type="text" name="detail['+data_position+'][title]" class="form-control form-control-user data_position" placeholder="Titre de la ligne"></div><div class="col-sm-6"><input type="text" name="detail['+data_position+'][description]" class="form-control form-control-user" placeholder="Description de la ligne"></div></div>';
 	  
 	  $('#detail_form').append(html).addClass('new_detail_add')
-	
 })
+
+$(document).on('click', '#delete_this', function(){
+	 find =  $(this).find('input')
+	  find.val('deleted')
+	 $(this).parent().parent().hide()
+})
+
 
 (function($) {
 	  "use strict"; // Start of use strict

@@ -47,9 +47,29 @@ class Invoice extends CI_Controller {
 	public static function addInvoice()
 	{
 		$ci = & get_instance();
-		$ci->load->model('InvoiceModel');
-		$data['invoices'] = $ci->InvoiceModel->addInvoice();
-		$ci->load->view('invoice/add_invoice', $data);
+		if($ci->input->post('add') && $ci->input->post('detail'))
+		{
+			$value_invoice = $ci->input->post('add');
+			$value_invoice_detail = $ci->input->post('detail');
+			$ci->load->model('InvoiceModel');
+			$id_invoice = $ci->InvoiceModel->addInvoice($value_invoice);
+			foreach($value_invoice_detail as $val)
+			{
+				//print_r($val['stop']);
+				if(isset($val['stop']))
+				continue;
+				$data_invoice_detail = array(
+					'id_invoice' => $id_invoice,
+					'title' => $val['title'],
+					'description' => $val['description'],
+					'quantity' => $val['quantity'],
+					'price' => $val['price']
+				);
+				$ci->InvoiceModel->addInvoiceDetail($data_invoice_detail);
+
+			}
+		}
+		$ci->load->view('invoice/add_invoice');
 	}
 
 	
