@@ -66,7 +66,9 @@ class Invoice extends CI_Controller {
 					'price' => $val['price']
 				);
 				$ci->InvoiceModel->addInvoiceDetail($data_invoice_detail);
-				$ci->load->view('errors/invoice_success');
+				$base_url = base_url();
+				$redirect = $base_url.'Invoice';
+				header('Location: '.$redirect);
 				// push
 
 			}
