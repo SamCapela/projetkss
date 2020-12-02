@@ -47,6 +47,7 @@ class Auth extends CI_Controller {
 						'lastname'  => $val['lastname'],
 						'email'     => $val['email'],
 						'id_customer' => $val['id_customer'],
+						'role' => $val['role']
 					);
 				}
 				$ci->session->set_userdata($session_data);
