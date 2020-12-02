@@ -50,7 +50,12 @@ class Auth extends CI_Controller {
 						'role' => $val['role']
 					);
 				}
+
 				$ci->session->set_userdata($session_data);
+				$ci->load->helper('url');
+				$base_url = base_url();
+				$redirect = $base_url.'Invoice';
+				header('Location: '.$redirect);
 			}
 			else
 			{
