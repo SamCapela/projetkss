@@ -103,7 +103,29 @@ $this->load->helper('url');
 					</div>
 				</div>
 			</li>
+			
 			<?php
+			if($_SESSION['role'] == 0)
+			{
+				?>
+			
+			<div class="sidebar-heading">
+				Administration
+			</div>
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages">
+					<i class="fas fa-fw fa-folder"></i>
+					<span>Administration</span>
+				</a>
+				<div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="<?php echo base_url(); ?>admin">Liste des utilisateurs</a>
+						<a class="collapse-item" href="<?php echo base_url(); ?>admin?add_user=1">Ajouter un utilisateur</a>
+					</div>
+				</div>
+			</li>
+			<?php
+				}
 			}
 			else
 			{
