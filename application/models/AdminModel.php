@@ -15,7 +15,6 @@ class AdminModel extends CI_Model
 	{
 		$ci =& get_instance();
 		$ci->db->select('*');
-		$ci->db->where('role', 1);
 		$ci->db->from('customers');
 		$query = $ci->db->get();
 		return $query->result_array();
