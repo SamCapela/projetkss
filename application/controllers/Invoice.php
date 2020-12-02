@@ -66,6 +66,8 @@ class Invoice extends CI_Controller {
 					'price' => $val['price']
 				);
 				$ci->InvoiceModel->addInvoiceDetail($data_invoice_detail);
+				$ci->load->view('errors/invoice_success');
+				// push
 
 			}
 		}

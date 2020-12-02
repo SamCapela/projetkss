@@ -69,4 +69,6 @@ class InvoiceModel extends CI_Model
 		$ci->db->insert('invoice_detail', $value_invoice_detail);
 	}
 	
+	// push
+	
 }

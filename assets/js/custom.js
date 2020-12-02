@@ -1,5 +1,6 @@
 $('#add_row').on('click', function()
 {
+	// push
 	data_position = $('.data_position:last').attr('data-position');
 	data_position = parseInt(data_position) + 1;
 	

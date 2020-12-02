@@ -45,6 +45,7 @@ $this->load->view('header');
 					<input type="number"  name="detail[0][price]" class="form-control form-control-user" placeholder="Prix">
 				</div>
 				<hr>
+				<!-- push -->
 				<div class="margin-spacing"></div>
 				<div class="col-sm-6 mb-3 mb-sm-0">
 					<input data-position="0" type="text" name="detail[0][title]" class="form-control form-control-user data_position" placeholder="Titre de la ligne">
