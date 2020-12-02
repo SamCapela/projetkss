@@ -56,7 +56,7 @@ class Invoice extends CI_Controller {
 			foreach($value_invoice_detail as $val)
 			{
 				//print_r($val['stop']);
-				if(isset($val['stop']))
+				if($val['stop'] == "deleted")
 				continue;
 				$data_invoice_detail = array(
 					'id_invoice' => $id_invoice,
