@@ -88,7 +88,7 @@ class Invoice extends CI_Controller
 		$query = "SELECT * FROM INVOICE";
 		$result = mysqli_query($conn, $query);
 		while ($row = mysqli_fetch_row($result)) {
-			$header[] = $row[0];
+		$header[] = $row[0];
 		}
 
 		//header('Content-type: application/csv');
@@ -97,6 +97,10 @@ class Invoice extends CI_Controller
 
 		$query = "SELECT * FROM invoice";
 		$result = mysqli_query($conn, $query);
+		// $column = array(
+		// 	"test", "name"
+		// );
+		// fputcsv($fp, $column);
 		while ($row = mysqli_fetch_row($result)) {
 			fputcsv($fp, $row);
 		}

@@ -24,7 +24,7 @@ $this->load->view('header');
 					<td>' . $invoice['reference'] . '</td>
 					<td>' . $invoice['title'] . '</td>
 					<td>' . $invoice['invoice_date'] . '</td>
-					<td><a class="btn-primary" href="?export_pdf=' . $invoice['id_invoice'] . '">PDF</a></td>					
+					<td><a class="btn-primary" href="?export_pdf=' . $invoice['id_invoice'] . '" target="_blank">PDF</a></td>					
 				</tr>');
 			}
 			echo ('
@@ -39,3 +39,4 @@ $this->load->view('header');
 defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->view('footer');
 ?>
+

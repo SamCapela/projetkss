@@ -96,7 +96,7 @@ $this->load->helper('url');
 						<div class="bg-white py-2 collapse-inner rounded">
 							<a class="collapse-item" href="<?php echo base_url(); ?>invoice">Liste des factures</a>
 							<a class="collapse-item" href="<?php echo base_url(); ?>invoice?add_invoice=1">Créer une facture</a>
-							<a class="collapse-item" href="<?php echo base_url(); ?>invoice?export_csv=1">Exporter les factures en CSV</a>
+							<a class="collapse-item" href="<?php echo base_url(); ?>invoice?export_csv=1">Liste des facture en CSV</a>
 						</div>
 					</div>
 				</li>
