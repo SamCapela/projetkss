@@ -25,10 +25,14 @@ class Admin extends CI_Controller {
 		$ci = & get_instance();
 		$ci->load->model('AdminModel');
 		$data['users'] = $ci->AdminModel->getUsers();
+		$ci->load->helper('url');
+		$data['base_url'] = base_url();
 		
 		
 		if($value = $this->input->get('add_user'))
 		$this->addUser();
+		elseif($value = $this->input->get('deleted'))
+		$this->deleteCustomer($value);
 		else
 		$this->load->view('admin', $data);
 	}
@@ -50,6 +54,16 @@ class Admin extends CI_Controller {
 			}
 		}
 		$ci->load->view('admin/add_user');
+	}
+	
+	public static function deleteCustomer($id_customer)
+	{
+			$ci = & get_instance();
+			$ci->load->model('AdminModel');
+			$result = $ci->AdminModel->deletedCustomer($id_customer);
+			if($result == true)
+			$ci->load->view('errors/invoice_success');
+		
 	}
 
 	

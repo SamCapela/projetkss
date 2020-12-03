@@ -57,7 +57,6 @@ $this->load->view('header');
 			</div>
 			<div class="margin-spacing"></div>
 		</div>	
-		<a class="btn-primary" id="refresh_price">Refresh price</a>
 		<div class="col-sm-12 total-price-show">
 			<input required="required" type="hidden" value="" id="total_price"/>
 			<span id="total_price">Total:  	<a class="display_price"> 0 </a>   <a>€</a></span>

@@ -12,6 +12,7 @@ $this->load->view('header');
 				<th scope="col">Civilité</th>
 				<th scope="col">Email</th>
 				<th scope="col">Role</th>
+				<th scope="col">Action</th>
 			</tr>
 		</thead>	
 		<tbody>
@@ -37,6 +38,7 @@ $this->load->view('header');
 					<td>'.$civility.'</td>
 					<td>'.$user['email'].'</td>
 					<td>'.$user_type.'</td>
+					<td><a class="remove-btn" href="'.$base_url.'admin?deleted='.$user['id_customer'].'"><i class="fas fa-trash"></i></a></td>
 				</tr>');			
 		}
 		echo('

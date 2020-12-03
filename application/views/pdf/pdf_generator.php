@@ -29,7 +29,7 @@ $pdf = '
 	  <h1>Projet KSS</h1>
 	</div>
   </div>
-  <div class="date">Date de facturation: ' . $invoice['invoice_date'] . '</div>
+  <div class="date">Date de facturation: ' .$invoice['invoice_date'] . '</div>
   <table cellspacing="0" cellpadding="0" border="0">
 	<thead>
 	  <tr>

@@ -45,10 +45,12 @@ class InvoiceModel extends CI_Model
 	{
 		$ci = &get_instance();
 		$rand_reference = rand(100, 999);
+		$date = date("d-m-Y", strtotime($value_invoice['invoice_date']));
+		  
 		$reference = '#F' . $_SESSION['id_customer'] . $rand_reference;
 		$data_invoice = array(
 			'id_customer' => $_SESSION['id_customer'],
-			'invoice_date' => $value_invoice['invoice_date'],
+			'invoice_date' => $date,
 			'title' => $value_invoice['title'],
 			'reference' => $reference,
 			'company' => $value_invoice['company'],

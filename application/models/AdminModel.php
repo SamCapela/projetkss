@@ -38,4 +38,14 @@ class AdminModel extends CI_Model
 		return true;
 	}
 	
+	public static function deletedCustomer($id_customer)
+	{
+		//var_dump($id_customer);die();
+		$ci =& get_instance();
+		$ci->db->where('id_customer', $id_customer);
+		$ci->db->delete('customers');
+		
+		return true;
+	}
+	
 }
