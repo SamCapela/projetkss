@@ -30,6 +30,13 @@ class Auth extends CI_Controller {
 	public static function getConnexion()
 	{
 		$ci = & get_instance();
+		if($_SESSION['id_customer'] > 0)
+		{
+			$ci->load->helper('url');
+			$base_url = base_url();
+			$redirect = $base_url.'Invoice';
+			header('Location: '.$redirect);
+		}
 		if($ci->input->post('connexion'))
 		{
 			$value = $ci->input->post('connexion');

@@ -22,12 +22,12 @@ $this->load->view('header');
 								</div>
 								<form class="user"  method="POST">
 									<div class="form-group">
-										<input type="email" name="connexion[email]" class="form-control form-control-user"
+										<input required="required" type="email" name="connexion[email]" class="form-control form-control-user"
 											id="exampleInputEmail" aria-describedby="emailHelp"
 											placeholder="Adresse email">
 									</div>
 									<div class="form-group">
-										<input type="password" name="connexion[password]" class="form-control form-control-user"
+										<input required="required" type="password" name="connexion[password]" class="form-control form-control-user"
 											id="exampleInputPassword" placeholder="Mot de passe">
 									</div>
 									<button type="submit"  class="btn btn-primary btn-user btn-block">

@@ -9,26 +9,33 @@ $this->load->view('header');
 	<form class="user" method="POST">
 		<div class="form-group row">
 			<div class="col-sm-6 mb-3 mb-sm-0">
-				<input type="email" name="user_add['email']" class="form-control form-control-user" placeholder="Email">
+				<input required="required" type="email" name="user_add[email]" class="form-control form-control-user" placeholder="Email">
 			</div>
 			<div class="col-sm-6">
-				<input type="password" name="user_add['password']" class="form-control form-control-user" placeholder="Mot de passe">
+				<input required="required" type="password" name="user_add[password]" class="form-control form-control-user" placeholder="Mot de passe">
 			</div>
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-6 mb-3 mb-sm-0">
-				<input type="text" name="user_add['firstname']" class="form-control form-control-user" placeholder="Prénom">
+				<input required="required" type="text" name="user_add[firstname]" class="form-control form-control-user" placeholder="Prénom">
 			</div>
 			<div class="col-sm-6">
-				<input name="user_add['lastname']" type="text" class="form-control form-control-user" placeholder="Nom">
+				<input required="required" name="user_add[lastname]" type="text" class="form-control form-control-user" placeholder="Nom">
 			</div>
         </div>
         <div class="form-group row">
-			<div class="col-sm-6 mb-3 mb-sm-0">
-				<input type="number" name="user_add['civility']" class="form-control form-control-user" placeholder="Civilité">
+			<div class="col-sm-6 mb-3 mb-sm-0 form-check">
+				<select class="form-control" name="user_add[civility]">
+					<option value="1">Mr</option>
+					<option value="0">Mme</option>
+				</select>
+
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
-				<input type="number" name="user_add['role']" class="form-control form-control-user" placeholder="Role">
+				<select class="form-control" name="user_add[role]">
+					<option value="1">User</option>
+					<option value="0">Admin</option>
+				</select>
             </div>
         </div>
         <div class="form-group row">

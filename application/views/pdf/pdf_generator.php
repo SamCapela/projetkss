@@ -81,11 +81,6 @@ $pdf = '
 	  </tr>
 	</tfoot>
   </table>
-  <div id="thanks"></div>
-  <div id="notices">
-	<div>NOTICE:</div>
-	<div class="notice"></div>
-  </div>
 </body>
 <style>
 @font-face {

@@ -19,15 +19,24 @@ $this->load->view('header');
 <?php
 		foreach($users as $user)
 		{
+			if($user['civility'] == 1)
+			$civility = 'Mr';
+			else
+			$civility = 'Mme';
+			
+			if($user['role'] == 1)
+			$user_type = 'User';
+			else
+			$user_type = 'Admin';
 			
 			echo('
 				<tr>
 					
 					<td>'.$user['firstname'].'</td>
 					<td>'.$user['lastname'].'</td>
-					<td>'.$user['civility'].'</td>
+					<td>'.$civility.'</td>
 					<td>'.$user['email'].'</td>
-					<td>'.$user['role'].'</td>
+					<td>'.$user_type.'</td>
 				</tr>');			
 		}
 		echo('

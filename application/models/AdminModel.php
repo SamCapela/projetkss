@@ -20,8 +20,21 @@ class AdminModel extends CI_Model
 		return $query->result_array();
 	}
 	
-	public static function addUser()
+	public static function addUser($value)
 	{
+		$encrypt_password = hash('sha256', $value['password']);
+		$ci =& get_instance();
+		$data = array(
+			'firstname' => $value['firstname'],
+			'lastname' => $value['lastname'],
+			'password' => $encrypt_password,
+			'civility' => $value['civility'],
+			'email' => $value['email'],
+			'role' => $value['role']
+		); 
+		
+		
+		$ci->db->insert('customers', $data);
 		return true;
 	}
 	

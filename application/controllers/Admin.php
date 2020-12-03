@@ -37,9 +37,19 @@ class Admin extends CI_Controller {
 	public static function addUser()
 	{
 		$ci = & get_instance();
-		$ci->load->model('AdminModel');
-		$data['users'] = $ci->AdminModel->addUser();
-		$ci->load->view('admin/add_user', $data);
+		if($values = $ci->input->post('user_add'))
+		{
+			$ci->load->model('AdminModel');
+			$result = $ci->AdminModel->addUser($values);
+			if($result == true)
+			{
+				$ci->load->helper('url');
+				$base_url = base_url();
+				$redirect = $base_url.'Admin';
+				header('Location: '.$redirect);
+			}
+		}
+		$ci->load->view('admin/add_user');
 	}
 
 	
