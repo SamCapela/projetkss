@@ -3,6 +3,7 @@ require_once '././vendor/autoload.php';
 
 use Spipu\Html2Pdf\Html2Pdf;
 
+
 // $date = $invoices[0]['invoice_date'];
 // $title = $invoices[0]['title'];
 // $reference = $invoices[0]['reference'];
@@ -12,8 +13,11 @@ use Spipu\Html2Pdf\Html2Pdf;
 // $sentlastname = $invoices[0]['sent_lastname'];
 // $sentadress = $invoices[0]['sent_address'];
 $invoice = $invoices[0];
+$subTotal = 0;
+$taxe = 20;
 
-$content = '<body>
+$pdf = '
+<body>
   <div id="details" class="clearfix">
 	<div id="client">
 	  <div class="to">Facture destinée à:</div>
@@ -36,48 +40,44 @@ $content = '<body>
 		<th class="total">Total </th>
 	  </tr>
 	</thead>
-	<tbody>
-	  <tr>
+	<tbody>';
+
+	$invoice_details = '';
+
+	foreach($details as $detail)
+	{
+		$total = (int)$detail['quantity'] * (int)$detail['price'];
+		$invoice_details = $invoice_details.'<tr>
 		<td class="no">01</td>
 		<td class="desc">
-			<h3>Website Design</h3> 
-			based on the companys existing visual identity based on the companys existing visual identity
-			based on the companys existing visual identity based on the companys existing visual identity
+			<h3>'.$detail['title'].'</h3> 
+			'.$detail['description'].'
 		</td>
-		<td class="unit">$40.00</td>
-		<td class="qty">30</td>
-		<td class="total">$1,200.00</td>
-	  </tr>
-	  <tr>
-		<td class="no">02</td>
-		<td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-		<td class="unit">$40.00</td>
-		<td class="qty">80</td>
-		<td class="total">$3,200.00</td>
-	  </tr>
-	  <tr>
-		<td class="no">03</td>
-		<td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-		<td class="unit">$40.00</td>
-		<td class="qty">20</td>
-		<td class="total">$800.00</td>
-	  </tr>
+		<td class="unit">€'.$detail['price'].'</td>
+		<td class="qty">'.$detail['quantity'].'</td>
+		<td class="total">'.$total.'</td>
+	  </tr>';
+
+	  $subTotal += $total;
+	}
+
+	$end = '
 	</tbody>
 	<tfoot>
 	  <tr>
 		<td colspan="2"></td>
-		<td colspan="2">Sous-total</td>
-		<td>€5,200.00</td>
+		<td colspan="2">Montant hors taxe</td>
+		<td>€'.$subTotal.'</td>
 	  </tr>
 	  <tr>
 		<td colspan="2"></td>
-		<td colspan="2">Taxes 25%</td>
-		<td>€1,300.00</td>
+		<td colspan="2">Montant de TVA ('.$taxe.'%)</td>
+		<td>€'.$subTotal*($taxe/100).'</td>
 	  </tr>
 	  <tr>
 		<td colspan="2"></td>
-		<td colspan="2">Total</td>
-		<td>€6,500.00</td>
+		<td colspan="2">Montant TTC</td>
+		<td>€'.(int)($subTotal+($subTotal*($taxe/100))).'</td>
 	  </tr>
 	</tfoot>
   </table>
@@ -135,11 +135,12 @@ $content = '<body>
 	#client {
 	  padding-left: 6px;
 	  border-left: 6px solid #0087C3;
-	  float: left;
+	  float: right;
 	}
 	
 	#client .to {
 	  color: #777777;
+	  float: left
 	}
 	
 	h2.name {
@@ -272,9 +273,9 @@ $content = '<body>
 	
 	
 </style>';
-
+$pdf = $pdf.$invoice_details.$end;
 $html2pdf = new Html2Pdf();
-$html2pdf->writeHTML($content);
+$html2pdf->writeHTML($pdf);
 $html2pdf->output('facture.pdf'); // Generate and load the PDF in the browser.
 
 

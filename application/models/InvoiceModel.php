@@ -31,6 +31,16 @@ class InvoiceModel extends CI_Model
 		return $query->result_array();
 	}
 
+	public static function getDetails($id)
+	{
+		$ci = &get_instance();
+		$ci->db->select('*');
+		$ci->db->where('id_invoice', $id);
+		$ci->db->from('invoice_detail');
+		$query = $ci->db->get();
+		return $query->result_array();
+	}
+
 	public static function getAllInvoices($id_customer)
 	{
 		$ci = &get_instance();
