@@ -80,30 +80,57 @@ class Invoice extends CI_Controller
 
 	public static function exportcsv($value_invoice)
 	{
-		$conn = mysqli_connect("localhost", "root", "mysql", "projetkss");
-
-		$filename = "export.csv";
-		$fp = fopen('php://output', 'w');
-
-		$query = "SELECT * FROM INVOICE";
-		$result = mysqli_query($conn, $query);
-		while ($row = mysqli_fetch_row($result)) {
-		$header[] = $row[0];
+		//Our MySQL connection details.
+		$host = 'localhost';
+		$user = 'root';
+		$password = 'mysql';
+		$database = 'projetkss';
+		
+		//Connect to MySQL using PDO.
+		$pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+		
+		//Create our SQL query.
+		$sql = "SELECT * FROM invoice";
+		
+		//Prepare our SQL query.
+		$statement = $pdo->prepare($sql);
+		
+		//Executre our SQL query.
+		$statement->execute();
+		
+		//Fetch all of the rows from our MySQL table.
+		$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		//Get the column names.
+		$columnNames = array();
+		if(!empty($rows)){
+			//We only need to loop through the first row of our result
+			//in order to collate the column names.
+			$firstRow = $rows[0];
+			foreach($firstRow as $colName => $val){
+				$columnNames[] = $colName;
+			}
 		}
-
-		//header('Content-type: application/csv');
-		header('Content-Disposition: attachment; filename=' . $filename);
-		fputcsv($fp, $header);
-
-		$query = "SELECT * FROM invoice";
-		$result = mysqli_query($conn, $query);
-		// $column = array(
-		// 	"test", "name"
-		// );
-		// fputcsv($fp, $column);
-		while ($row = mysqli_fetch_row($result)) {
+		
+		//Setup the filename that our CSV will have when it is downloaded.
+		$fileName = 'invoices.csv';
+		
+		//Set the Content-Type and Content-Disposition headers to force the download.
+		header('Content-Type: application/excel');
+		header('Content-Disposition: attachment; filename="' . $fileName . '"');
+		
+		//Open up a file pointer
+		$fp = fopen('php://output', 'w');
+		
+		//Start off by writing the column names to the file.
+		fputcsv($fp, $columnNames);
+		
+		//Then, loop through the rows and write them to the CSV file.
+		foreach ($rows as $row) {
 			fputcsv($fp, $row);
 		}
-		exit;
+		
+		//Close the file pointer.
+		fclose($fp);
 	}
 }
