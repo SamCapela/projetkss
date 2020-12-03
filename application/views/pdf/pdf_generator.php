@@ -17,15 +17,15 @@ $content = '<body>
   <div id="details" class="clearfix">
 	<div id="client">
 	  <div class="to">Facture destinée à:</div>
-	  <h2 class="name">'.$invoice['sent_firstname'].' '.$invoice['sent_lastname'].'</h2>
-	  <div class="address">'.$invoice['sent_address'].'</div>
-	  <div class="email"><a href="mailto:'.$invoice['sent_email'].'">'.$invoice['sent_email'].'</a></div>
+	  <h2 class="name">' . $invoice['sent_firstname'] . ' ' . $invoice['sent_lastname'] . '</h2>
+	  <div class="address">' . $invoice['sent_address'] . '</div>
+	  <div class="email"><a href="mailto:' . $invoice['sent_email'] . '">' . $invoice['sent_email'] . '</a></div>
 	</div>
 	<div id="invoice">
 	  <h1>Projet KSS</h1>
 	</div>
   </div>
-  <div class="date">Date de facturation: '.$invoice['invoice_date'].'</div>
+  <div class="date">Date de facturation: ' . $invoice['invoice_date'] . '</div>
   <table cellspacing="0" cellpadding="0" border="0">
 	<thead>
 	  <tr>
@@ -279,6 +279,3 @@ $html2pdf->output('facture.pdf'); // Generate and load the PDF in the browser.
 
 
 //$html2pdf->output('myPdf.pdf, 'D'); // Generate the PDF execution and force download immediately.
-
-?>
-
