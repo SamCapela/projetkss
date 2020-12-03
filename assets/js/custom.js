@@ -4,7 +4,7 @@ $('#add_row').on('click', function()
 	data_position = $('.data_position:last').attr('data-position');
 	data_position = parseInt(data_position) + 1;
 	
-	html = '<div class="form-group row detail-invoice clear clearfix"><div class="col-sm-12 btn-delete"><a id="delete_this" class="btn-alert">Supprimer<input class="delete_me" type="hidden" value="" name="detail['+data_position+'][stop]"></a></div><div class="col-sm-6 mb-3 mb-sm-0"><input type="number" name="detail['+data_position+'][quantity]" value="1" class="quantity_detail form-control form-control-user" placeholder="Quantité"></div><div class="col-sm-6"><input type="number" name="detail['+data_position+'][price]" class=" price_detail form-control form-control-user" placeholder="Prix"></div><hr><div class="margin-spacing"></div><div class="col-sm-6 mb-3 mb-sm-0"><input data-position="'+data_position+'" type="text" name="detail['+data_position+'][title]" class="form-control form-control-user data_position" placeholder="Titre de la ligne"></div><div class="col-sm-6"><input type="text" name="detail['+data_position+'][description]" class="form-control form-control-user" placeholder="Description de la ligne"></div></div>';
+	html = '<div class="form-group row detail-invoice clear clearfix"><div class="col-sm-12 btn-delete"><a id="delete_this" class="btn-alert">Supprimer<input required="required" class="delete_me" type="hidden" value="" name="detail['+data_position+'][stop]"></a></div><div class="col-sm-6 mb-3 mb-sm-0"><input required="required" type="number" name="detail['+data_position+'][quantity]" value="1" class="quantity_detail form-control form-control-user" placeholder="Quantité"></div><div class="col-sm-6"><input required="required" type="number" name="detail['+data_position+'][price]" class=" price_detail form-control form-control-user" placeholder="Prix"></div><hr><div class="margin-spacing"></div><div class="col-sm-6 mb-3 mb-sm-0"><input type="hidden" value="0" class="this_price"/><input required="required" data-position="'+data_position+'" type="text" name="detail['+data_position+'][title]" class="form-control form-control-user data_position" placeholder="Titre de la ligne"></div><div class="col-sm-6"><input required="required" type="text" name="detail['+data_position+'][description]" class="form-control form-control-user" placeholder="Description de la ligne"></div></div>';
 	  
 	  $('#detail_form').append(html).addClass('new_detail_add')
 })
@@ -15,6 +15,21 @@ $(document).on('click', '#delete_this', function(){
 	 $(this).parent().parent().hide()
 })
 
+
+$(document).on('keyup', '.form-group', function(){
+	var total_sum = 0;
+	quantity = $(this).find('.quantity_detail').val();
+	price = $(this).find('.price_detail').val();
+	final_price = price * quantity;
+	$(this).find('.this_price').val(final_price);
+	$('.this_price').each(function()
+	{
+		price =  parseInt($(this).val());
+	    total_sum += price;
+	})
+	$('#total_price .display_price').html(total_sum)
+})
+	
 
 (function($) {
 	  "use strict"; // Start of use strict

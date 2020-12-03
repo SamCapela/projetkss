@@ -68,6 +68,21 @@ class InvoiceModel extends CI_Model
 		$ci = &get_instance();
 		$ci->db->insert('invoice_detail', $value_invoice_detail);
 	}
+	
+	public static function exportInvoiceCsv()
+	{
+	 
+		$response = array();
+	    $ci = &get_instance();
+		$ci->db->select('*');
+		$ci->db->from('invoice');
+		$ci->db->join('invoice_detail', 'invoice_detail.id_invoice = invoice.id_invoice', 'left');
+		$ci->db->where('id_customer', $_SESSION['id_customer']);
+		$q = $ci->db->get();
+		$response = $q->result_array();
+	 
+		return $response;
+	}
 
 	// push
 

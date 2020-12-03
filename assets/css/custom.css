@@ -2854,7 +2854,10 @@ fieldset:disabled a.btn {
   background-color: #f6c23e;
   border-color: #f6c23e;
 }
-
+input[type="number"]
+{
+	-moz-appearance: textfield !important;
+}
 #total_price {
 	float: right;
 	padding: 30px;

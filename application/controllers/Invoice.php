@@ -33,7 +33,7 @@ class Invoice extends CI_Controller
 		elseif ($value = $this->input->get('export_pdf'))
 			$this->pdfGenerator($value);
 		elseif ($value = $this->input->get('export_csv'))
-			$this->exportcsv($value);
+			$this->exportCsv();
 		else
 			$this->load->view('invoice', $data);
 	}
@@ -78,59 +78,28 @@ class Invoice extends CI_Controller
 		$ci->load->view('invoice/add_invoice');
 	}
 
-	public static function exportcsv($value_invoice)
-	{
-		//Our MySQL connection details.
-		$host = 'localhost';
-		$user = 'root';
-		$password = 'mysql';
-		$database = 'projetkss';
-		
-		//Connect to MySQL using PDO.
-		$pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
-		
-		//Create our SQL query.
-		$sql = "SELECT * FROM invoice";
-		
-		//Prepare our SQL query.
-		$statement = $pdo->prepare($sql);
-		
-		//Executre our SQL query.
-		$statement->execute();
-		
-		//Fetch all of the rows from our MySQL table.
-		$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-		
-		//Get the column names.
-		$columnNames = array();
-		if(!empty($rows)){
-			//We only need to loop through the first row of our result
-			//in order to collate the column names.
-			$firstRow = $rows[0];
-			foreach($firstRow as $colName => $val){
-				$columnNames[] = $colName;
-			}
-		}
-		
-		//Setup the filename that our CSV will have when it is downloaded.
-		$fileName = 'invoices.csv';
-		
-		//Set the Content-Type and Content-Disposition headers to force the download.
-		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment; filename="' . $fileName . '"');
-		
-		//Open up a file pointer
-		$fp = fopen('php://output', 'w');
-		
-		//Start off by writing the column names to the file.
-		fputcsv($fp, $columnNames);
-		
-		//Then, loop through the rows and write them to the CSV file.
-		foreach ($rows as $row) {
-			fputcsv($fp, $row);
-		}
-		
-		//Close the file pointer.
-		fclose($fp);
-	}
+	public function exportCsv()
+	{ 
+		   $ci = &get_instance();
+		   $ci->load->model('InvoiceModel');
+		   // file name 
+		   $filename = 'facture_'.date('Ymd').'.csv'; 
+		   header("Content-Description: File Transfer"); 
+		   header("Content-Disposition: attachment; filename=$filename"); 
+		   header("Content-Type: application/csv; ");
+		   
+		   // get data 
+
+		   $usersData = $ci->InvoiceModel->exportInvoiceCsv();
+		   // file creation 
+		   $file = fopen('php://output', 'w');
+		 
+		   $header = array("id_invoice","id_customer","invoice_date","title", "reference", "company", "sent_email", "sent_firstname", "sent_lastname", "sent_address", "Title_détail", "description_detail", "quantity", "price"); 
+		   fputcsv($file, $header);
+		   foreach ($usersData as $key=>$line){ 
+			 fputcsv($file,$line); 
+		   }
+		   fclose($file); 
+		   exit; 
+    }
 }
