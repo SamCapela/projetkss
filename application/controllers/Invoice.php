@@ -43,7 +43,6 @@ class Invoice extends CI_Controller
 		$ci = &get_instance();
 		$ci->load->model('InvoiceModel');
 		$data['invoices'] = $ci->InvoiceModel->getInvoice($id_invoice);
-		$data['details'] = $ci->InvoiceModel->getDetails($id_invoice);
 		$ci->load->view('pdf/pdf_generator', $data);
 	}
 

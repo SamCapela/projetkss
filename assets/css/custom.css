@@ -2855,6 +2855,18 @@ fieldset:disabled a.btn {
   border-color: #f6c23e;
 }
 
+#total_price {
+	float: right;
+	padding: 30px;
+	border: solid 1px #eee;
+	border-radius: 10px;
+	width: 50%;
+	margin-bottom: 1rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 25px;
+}
+
 .btn-outline-warning:not(:disabled):not(.disabled):active:focus, .btn-outline-warning:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-warning.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(246, 194, 62, 0.5);

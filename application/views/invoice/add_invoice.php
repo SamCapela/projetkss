@@ -39,10 +39,10 @@ $this->load->view('header');
 		<div id="detail_form" class="form_detail">
 			<div  class="form-group row detail-invoice clear clearfix">
 				<div class="col-sm-6 mb-3 mb-sm-0">
-					<input type="number" name="detail[0][quantity]" class="form-control form-control-user" placeholder="Quantité">
+					<input type="number" name="detail[0][quantity]" value="1" class="quantity_detail form-control form-control-user" placeholder="Quantité">
 				</div>
 				<div class="col-sm-6">
-					<input type="number"  name="detail[0][price]" class="form-control form-control-user" placeholder="Prix">
+					<input type="number"  name="detail[0][price]" class=" price_detail form-control form-control-user" placeholder="Prix">
 				</div>
 				<hr>
 				<!-- push -->
@@ -53,8 +53,14 @@ $this->load->view('header');
 				<div class="col-sm-6">
 					<input type="text" name="detail[0][description]" class="form-control form-control-user" placeholder="Description de la ligne">
 				</div>
+				<input type="hidden" value="0" id="this_price"/>
 			</div>
+			<div class="margin-spacing"></div>
 		</div>	
+		<a class="btn-primary" id="refresh_price">Refresh price</a>
+		<div class="col-sm-12 total-price-show">
+			<span id="total_price">Total:<a> 0 </a>   <a>€</a></span>
+		</div>
 		<button type="submit" class="btn btn-primary btn-user btn-block">
 			Valider
 		</button>
