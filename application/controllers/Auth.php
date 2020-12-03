@@ -30,7 +30,7 @@ class Auth extends CI_Controller {
 	public static function getConnexion()
 	{
 		$ci = & get_instance();
-		if($_SESSION['id_customer'] > 0)
+		if(isset($_SESSION['id_customer']))
 		{
 			$ci->load->helper('url');
 			$base_url = base_url();
