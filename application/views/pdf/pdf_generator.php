@@ -150,6 +150,7 @@ $pdf = '
 	}
 	
 	#invoice {
+	  padding-right: 50px;
 	  float: right;
 	  text-align: right;
 	}
