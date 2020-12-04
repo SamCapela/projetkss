@@ -62,7 +62,11 @@ class Admin extends CI_Controller {
 			$ci->load->model('AdminModel');
 			$result = $ci->AdminModel->deletedCustomer($id_customer);
 			if($result == true)
-			$ci->load->view('errors/invoice_success');
+			{
+				$base_url = base_url();
+				$redirect = $base_url.'Admin';
+				header('Location: '.$redirect);
+			}
 		
 	}
 
