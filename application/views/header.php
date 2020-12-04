@@ -26,9 +26,11 @@ $this->load->helper('url');
 						<li class="nav-item text-right">
 							<span class="nav-link" href="#"><?php echo $_SESSION['firstname']; ?></span>
 						</li>
+					
 						<li class="nav-item text-right">
 							<a href="<?php echo base_url(); ?>Auth?destroy_connexion=1"><span class="nav-link" href="#">Déconnexion</span>
 						</li>
+						?>
 					</div>
 
 				<?php
@@ -133,7 +135,10 @@ $this->load->helper('url');
 				</li>
 			<?php
 			}
+			if(isset($_SESSION['id_customer']))
+			{
 			?>
+			
 			<hr class="sidebar-divider">
 			<div class="sidebar-heading">
 				Déconnexion
@@ -145,4 +150,7 @@ $this->load->helper('url');
 				</a>
 			</li>
 			<hr class="sidebar-divider">
+			<?php
+			}
+			?>
 		</ul>
